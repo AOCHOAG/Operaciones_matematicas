@@ -1,21 +1,15 @@
 
-numero1 = int(input("Introduce un número: "))
-numero2 = int(input("Introduce otro número: "))
-numero3 = int(input("Introduce un último número: "))
+numero1 = float(input("Introduce un número: "))
+numero2 = float(input("Introduce otro número: "))
+numero3 = float(input("Introduce un último número: "))
 
 lista_numeros = [numero1, numero2, numero3]
 
 def mean(data):
-    if iter(data) is data:
-        data = list(data)
-        n = len(data)
-    if n < 1:
-        raise StatisticsError('mean requires at least one data point')
-        T, total, count = _sum(data)
-    assert count == n
-    return _convert(total / n, T)
+    return sum(data) / len(data)
+
 Media = mean(lista_numeros)
-print(Media)
+print("La media es: ", Media )
 
 def median(data):
     data = sorted(data)
@@ -29,18 +23,9 @@ def median(data):
         return (data[i - 1] + data[i]) / 2
 
 Mediana = median(lista_numeros)
-print(Mediana)
+print("La mediana es: ", Mediana)
 
-def variance(data, xbar=None):
-
-    if iter(data) is data:
-        data = list(data)
-    n = len(data)
-    if n < 2:
-        raise StatisticsError('variance requires at least two data points')
-    T, ss = _ss(data, xbar)
-    return _convert(ss / (n - 1), T)
-
-Varianza = variance(lista_numeros)
-print(Varianza)
+import numpy
+varianza = numpy.var(lista_numeros)
+print("La varianza es: ", varianza)
 
