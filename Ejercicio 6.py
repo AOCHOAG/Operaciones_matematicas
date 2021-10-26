@@ -25,7 +25,14 @@ def median(data):
 Mediana = median(lista_numeros)
 print("La mediana es: ", Mediana)
 
-import numpy
-varianza = numpy.var(lista_numeros)
-print("La varianza es: ", varianza)
+def variance(data, xbar=None):
 
+    if iter(data) is data:
+        data = list(data)
+    n = len(data)
+    if n < 2:
+        raise StatisticsError('variance requires at least two data points')
+    T, ss = _ss(data, xbar)
+    return _convert(ss / (n - 1), T)
+Varianza = variance(lista_numeros)
+print("La varianza es: ", Varianza)
