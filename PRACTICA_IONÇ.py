@@ -12,7 +12,10 @@
 #nombre_apellidos = nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2
 #print("Tus nombres y appelidos son: ", nombre_apellidos)
 
-a = float(input("Introduce un número al que quieres elevar a la 9ª potencia y dividirlo por 2: "))
-resultado = (a ** 9) / 2
-format(resultado, '.4f')
-print(resultado)
+#a = float(input("Introduce un número al que quieres elevar a la 9ª potencia y dividirlo por 2: "))
+#resultado = (a ** 9) / 2
+#format(resultado, '.4f')
+#print(resultado)
+for a = 1 to 100000
+    print(a)
+a = a + 1
