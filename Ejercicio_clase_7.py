@@ -17,7 +17,8 @@ while True: #creamos un bucle, para introducir varios elementos
     #le añada el diccionario en el que he ordenado las respuestas dadas, con la pregunta que he ehcho
     #datos_coche ["Cilindrada: "] = cilindrada. Es una manera de tener ordenadas las respuestas.
 
-for datos_coche in lista_coches: #por cada nuevo diccionario en la lista de coches le pido
+for datos_coche in lista_coches: #por cada nuevo diccionario en la lista de coches le pido que lo ponga por
+                                 #Separado. De esta manera lo añade a otr
     print("Caracteristicas del coche: \n", datos_coche) #Le pido que imprima Lista... lista_coches
 
 

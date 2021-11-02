@@ -11,7 +11,7 @@ n = int(input("Dimensión matrices a sumar: ")) #Defino n como las filas x colum
 
 m1 = [] #Defino m1 como una matriz en blanco
 
-print("Elementos de la matriz 1: ") #Le pido que imprima los elementos de la matriz 1
+print("Introduce los elementos de la matriz1: ") #Le pido que imprima los elementos de la matriz 1
 
 for i in range(n): #Desde i = 0 hasta el rango que he introducido anteriormente.
 
