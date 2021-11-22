@@ -2,9 +2,9 @@
 import Persistencia_pickle as pp
 import car_class
 import random as rd
-file = "coches_obj.txt"
-lista_coches = pp.retrieve(file)
-if lista_coches == None:
+ARCHIVO = "coches_obj.txt" #Archivo al ser constante se pone con mayusculas para identificarlo mas rapido
+lista_coches = pp.retrieve(ARCHIVO)
+if lista_coches == None: #Si el archivo no existe todavía, se crea la lista vacia
     lista_coches = []
 while True:
     marca = input("Marca: ")
@@ -13,31 +13,36 @@ while True:
     modelo = input("Modelo: ")
     combustible = input("Combustible: ")
     cilindrada = input("Cilindrada: ")
-    coche = car_class.Car(marca, modelo, combustible, cilindrada)
-    lista_coches.append(coche)
-    coche.move_to(rd.random()*100, rd.random()*600)
-    print("Posición: ", coche.get_pos())
-    coche.move_incr(rd.random()*10,rd.random()*60)
-    print("Posición: ", coche.get_pos())
-    del (coche)
+    ancho = input("Ancho de la rueda (en mm): ")
+    rodadura = input("Rodadura (% del ancho): ")
+    diametro = input("Diametro de la llanta (en pulgadas)")
 
-pp.store(lista_coches, file)
+    coche = car_class.Car(marca, modelo, combustible, cilindrada)  #Le llamo marca, igual que le he llamado en el input
+    wheel = car_class.Wheel(ancho, rodadura, diametro)             #de arriba. Esto se va a asociar a la variable marca
+                                                                   #coche, puesto que sigue el orden que he marcado en
+                                                                   #car_class al definir el objeto.
+    lista_coches.append(coche)
+    lista_coches.append(wheel)
+
+    wheel.set_pressure(input("Dime que presión llevan las ruedas: "))
+    coche.move_to(rd.random()*100, rd.random()*600) #A pos_x y pos_y le doy un valor aleatorio
+    print("Posición: ", coche.get_pos()) #Le pido que me devuelva los valores de x e y
+    coche.move_incr(rd.random()*10,rd.random()*60) #Incrementa los valores de pos_x y pos_y en 10 y 60 respectivamente
+    print("Posición: ", coche.get_pos()) #Escribe el nuevo valor de x e y
+    del (coche) #Borra el objeto. La variable deja de existir. Ya esta la informacion de coche en la lista.
+    del (wheel) #Se hace para evitar futuros problemas.
+
+pp.store(lista_coches, ARCHIVO)
 lista_coches = []
 print(lista_coches)
-lista_coches = pp.retrieve(file)
-for Car in lista_coches:
-    print("Marca, Modelo, Combustible, Cilindrada", \
-          Car.marca, Car.modelo, Car.combustible, Car.cilindrada)
-    print("Posición: ", Car.get_pos(), "\n")
+lista_coches = pp.retrieve(ARCHIVO)
+for car in lista_coches: #Por cada objeto en la lista
+    # Le doy una indicación de lo que se va a imprimir a continuación
+    print("Marca, Modelo, Combustible, Cilindrada",
+          car.marca, car.modelo, car.combustible, car.cilindrada) #Cada coche escribo su marca, modelo, combuustible,
+                                                        #y cilindrada. Como estan definidos en clase Car(car_class)
 
-
-mercedes_1 = Car('Mercedes', 'r350', 'gas', '3500')
-Audi_1 = Car("Audi", "RS6", "Gasolina", "4200")
-print("Marca ", mercedes_1.marca, 'pos_x ', mercedes_1.pos_x)
-print("Marca ", Audi_1.marca, 'pos_x ', Audi_1.pos_x)
-
-mercedes_1.move_to(100, 200, 2000)
-Audi_1.move_to(300, 100, 4000)
-
-print("Marca ", mercedes_1.marca, 'pos_x ', mercedes_1.pos_x)
-print("Posición Audi_1 ", Audi_1.get_pos())
+    print("Posición: ", car.get_pos(), "\n") #Le pido la posición x e y que habia obtenido previamente de cada
+                                             #Objeto correspondiente a cada coche
+for wheel in lista_coches:
+    print("Info rueda: ancho, rodadura, diametro, presión => ", wheel.print_info())
