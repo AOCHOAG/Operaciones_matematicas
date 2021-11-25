@@ -15,16 +15,16 @@ while True:
     cilindrada = input("Cilindrada: ")
     ancho = input("Ancho de la rueda (en mm): ")
     rodadura = input("Rodadura (% del ancho): ")
-    diametro = input("Diametro de la llanta (en pulgadas)")
+    diametro = input("Diametro de la llanta (en pulgadas): ")
 
-    coche = car_class.Car(marca, modelo, combustible, cilindrada)  #Le llamo marca, igual que le he llamado en el input
-    wheel = car_class.Wheel(ancho, rodadura, diametro)             #de arriba. Esto se va a asociar a la variable marca
+    wheel = car_class.Wheel(ancho, rodadura, diametro)
+    coche = car_class.Car(marca, modelo, combustible, cilindrada, wheel)  #Le llamo marca, igual que le he llamado en el input
+                                                                   #de arriba. Esto se va a asociar a la variable marca
                                                                    #coche, puesto que sigue el orden que he marcado en
                                                                    #car_class al definir el objeto.
     lista_coches.append(coche)
-    lista_coches.append(wheel)
 
-    wheel.set_pressure(input("Dime que presión llevan las ruedas: "))
+    coche.wheel.set_pressure(input("Dime que presión llevan las ruedas: "))
     coche.move_to(rd.random()*100, rd.random()*600) #A pos_x y pos_y le doy un valor aleatorio
     print("Posición: ", coche.get_pos()) #Le pido que me devuelva los valores de x e y
     coche.move_incr(rd.random()*10,rd.random()*60) #Incrementa los valores de pos_x y pos_y en 10 y 60 respectivamente
@@ -41,8 +41,7 @@ for car in lista_coches: #Por cada objeto en la lista
     print("Marca, Modelo, Combustible, Cilindrada",
           car.marca, car.modelo, car.combustible, car.cilindrada) #Cada coche escribo su marca, modelo, combuustible,
                                                         #y cilindrada. Como estan definidos en clase Car(car_class)
-
+    print("Info rueda: ancho, rodadura, diametro, presión => ", car.wheel.print_info())
     print("Posición: ", car.get_pos(), "\n") #Le pido la posición x e y que habia obtenido previamente de cada
                                              #Objeto correspondiente a cada coche
-for wheel in lista_coches:
-    print("Info rueda: ancho, rodadura, diametro, presión => ", wheel.print_info())
+

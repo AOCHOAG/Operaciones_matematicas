@@ -1,12 +1,13 @@
 """Car class"""
 
 class Car: #Defino un nuevo tipo de dato
-    def __init__(self, marca_coche, modelo_coche, combustible, cilindrada): #Defino como van a ser los objetos de
+    def __init__(self, marca_coche, modelo_coche, combustible, cilindrada, wheel): #Defino como van a ser los objetos de
                                                                             #Esta clase
         self.marca = marca_coche #EL objeto va a tener una variable (marca) que va a tomar el valor de marca_coche
         self.modelo = modelo_coche
         self.combustible = combustible
         self.cilindrada = cilindrada
+        self.wheel = wheel
         self.pos_x = 0 #Le doy el valor de o a pos_x
         self.pos_y = 0
 
