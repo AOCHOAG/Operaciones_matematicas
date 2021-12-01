@@ -23,3 +23,4 @@ print("Media: ", calculo_stats.mean)
 print("Mediana: ", calculo_stats.median)
 print("Varianza: ", calculo_stats.varance)
 
+
